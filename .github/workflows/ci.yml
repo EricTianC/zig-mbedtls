@@ -30,10 +30,10 @@ jobs:
           x86_64-windows-gnu,
         ]
         mode: [
-          debug,
-          release-safe,
-          release-fast,
-          release-small,
+          Debug,
+          ReleaseSafe,
+          ReleaseFast,
+          ReleaseSmall,
         ]
     steps:
       - name: Checkout
@@ -44,13 +44,13 @@ jobs:
       - name: Set up Zig
         uses: mlugg/setup-zig@v2
       
-      - name: Build Debug
-        if: ${{ matrix.mode == 'debug' }}
-        run: zig build -Dtarget=${{ matrix.target }} 
+      # - name: Build Debug
+      #   if: ${{ matrix.mode == 'debug' }}
+      #   run: zig build -Dtarget=${{ matrix.target }} 
 
-      - name: Build Release
-        if: ${{ matrix.mode != 'debug' }}
-        run: zig build -D${{ matrix.mode }} -Dtarget=${{ matrix.target }} 
+      - name: Build
+        # if: ${{ matrix.mode != 'debug' }}
+        run: zig build -Doptimize=${{ matrix.mode }} -Dtarget=${{ matrix.target }} 
       
   test:
     runs-on: ${{ matrix.os }}
@@ -62,10 +62,10 @@ jobs:
           macos-latest,
         ]
         mode: [
-          debug,
-          release-safe,
-          release-fast,
-          release-small,
+          Debug,
+          ReleaseSafe,
+          ReleaseFast,
+          ReleaseSmall,
         ]
     steps:
     - name: Checkout
@@ -77,10 +77,10 @@ jobs:
     - name: Set up Zig
       uses: mlugg/setup-zig@v2
 
-    - name: Build and Test Debug
-      if: ${{ matrix.mode == 'debug' }}
-      run: zig build test
+    # - name: Build and Test Debug
+    #   if: ${{ matrix.mode == 'debug' }}
+    #   run: zig build test
 
-    - name: Build and Test Release
-      if: ${{ matrix.mode != 'debug' }}
-      run: zig build test -D${{ matrix.mode }}
+    - name: Build and Test
+      # if: ${{ matrix.mode != 'debug' }}
+      run: zig build test -Doptimize=${{ matrix.mode }}
