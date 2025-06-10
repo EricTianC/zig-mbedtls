@@ -41,8 +41,8 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: Set up Zig
-        uses: mlugg/setup-zig@v2
+      # - name: Set up Zig
+      #   uses: mlugg/setup-zig@v2
       
       # - name: Build Debug
       #   if: ${{ matrix.mode == 'debug' }}
