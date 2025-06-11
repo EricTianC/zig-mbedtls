@@ -16,10 +16,12 @@ jobs:
         with:
           submodules: true  # 递归拉取 submodules
 
-      - name: 创建 tar.gz 文件
-        run: |
-          sleep 5  # 等待 submodules 完全拉取
-          tar -czf zig-mbedtls.tar.gz --exclude='.git' .
+      - name: Archive Release
+        uses: thedoctor0/zip-release@0.7.5
+        with:
+          type: 'tar.gz'
+          filename: 'zig-mbedtls.tar.gz'
+          exclusions: '*.git*'
 
       - name: 创建 Release
         uses: softprops/action-gh-release@v1
