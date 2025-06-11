@@ -20,11 +20,11 @@ jobs:
         uses: thedoctor0/zip-release@0.7.5
         with:
           type: 'tar.gz'
-          filename: 'zig-mbedtls.tar.gz'
-          exclusions: '*.git* zig-mbedtls.tar.gz'
+          filename: 'github-release/zig-mbedtls.tar.gz'
+          exclusions: '*.git* github-release'
 
       - name: 创建 Release
         uses: softprops/action-gh-release@v1
         with:
-          files: zig-mbedtls.tar.gz
+          files: github-release/zig-mbedtls.tar.gz
           token: ${{ secrets.GITHUB_TOKEN }}
