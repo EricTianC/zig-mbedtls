@@ -18,6 +18,7 @@ jobs:
 
       - name: 创建 tar.gz 文件
         run: |
+          sleep 5  # 等待 submodules 完全拉取
           tar -czf zig-mbedtls.tar.gz --exclude='.git' .
 
       - name: 创建 Release
