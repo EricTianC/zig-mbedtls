@@ -2,9 +2,8 @@ name: Auto Release
 
 on:
   push:
-    branches:
-      - main
-      - master
+    tags:
+      - 'v*'  # 监听以 v 开头的标签推送事件
 
 jobs:
   release:
