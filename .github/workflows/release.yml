@@ -21,7 +21,7 @@ jobs:
         with:
           type: 'tar.gz'
           filename: 'zig-mbedtls.tar.gz'
-          exclusions: '*.git*'
+          exclusions: '*.git* zig-mbedtls.tar.gz'
 
       - name: 创建 Release
         uses: softprops/action-gh-release@v1
