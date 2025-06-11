@@ -2,10 +2,12 @@ name: ci
 on:
   push:
     branches:
+      - master
       - main
       - ci-test
   pull_request:
     branches:
+      - master
       - main
   schedule:
     - cron: '0 7 * * *' # Every day at midnight

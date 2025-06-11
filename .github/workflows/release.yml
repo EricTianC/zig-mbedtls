@@ -1,0 +1,27 @@
+name: Auto Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码（包含 submodules）
+        uses: actions/checkout@v3
+        with:
+          submodules: true  # 递归拉取 submodules
+
+      - name: 创建 tar.gz 文件
+        run: |
+          tar -czf zig-mbedtls.tar.gz --exclude='.git' .
+
+      - name: 创建 Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: zig-mbedtls.tar.gz
+          token: ${{ secrets.GITHUB_TOKEN }}
