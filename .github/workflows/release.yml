@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create release folder
-        run: mkdir -p github-release
-        
       - name: 检出代码（包含 submodules）
         uses: actions/checkout@v3
         with:
@@ -22,9 +19,10 @@ jobs:
       - name: Archive Release
         uses: thedoctor0/zip-release@0.7.5
         with:
-          type: 'tar.gz'
+          type: 'tar'
           filename: 'github-release/zig-mbedtls.tar.gz'
           exclusions: '*.git* github-release'
+          command: "mkdir -p github-release"
 
       - name: 创建 Release
         uses: softprops/action-gh-release@v1
